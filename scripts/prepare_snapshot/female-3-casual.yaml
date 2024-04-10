@@ -1,0 +1,14 @@
+dataset:
+  snapshot_path: ../../data/snapshot
+  pose_path: ../../data/snapshot/poses
+  subject: 'female-3-casual'
+  sex: 'female'
+
+start_frame: 0
+end_frame: 445
+skip: 4
+split: 'train'
+
+output:
+  dir: ../../data/snapshot
+  name: 'f3c_train'

@@ -1,0 +1,130 @@
+exp_name: "zju-mocap_386"
+
+random_bgcolor: true
+bgcolor: [0., 0., 0.]
+img_size: [512, 512]
+
+dataset:
+  train:
+    dataset_path: "data/zju-mocap/386"
+    batch_size: 1
+    num_workers: 1
+
+    maxframes: -2
+
+  test_view:
+    dataset_path: "data/zju-mocap/386"
+    raw_dataset_path: "data/zju-mocap/CoreView_386"
+    batch_size: 1
+    num_workers: 1
+    skip: 30
+
+  test_pose:
+    dataset_path: "data/zju-mocap/386"
+    raw_dataset_path: "data/zju-mocap/CoreView_386"
+    batch_size: 1
+    num_workers: 1
+    skip: 30
+
+  test_pose_mdm:
+    dataset_path: "data/zju-mocap/386"
+    pose_path: ""
+    batch_size: 1
+    num_workers: 1
+
+  test_on_train:
+    dataset_path: "data/zju-mocap/386"
+    batch_size: 1
+    num_workers: 1
+
+  test_freeview:
+    dataset_path: "data/zju-mocap/386"
+    batch_size: 1
+    num_workers: 1
+    src_type: 'zju_mocap'
+
+model:
+  img_size: [512, 512]
+  subdivide_iters: [50001]
+
+  appearance:
+    face_color: true
+    color_init: 0.5
+
+  canonical_geometry:
+    radius_scale: 1.0
+    deform_scale: true
+    deform_so3: true
+
+    sigma: 0.001
+
+  renderer:
+    name: 'gaussian'
+
+  non_rigid:
+    name: 'basic'
+    condition_code_size: 69
+    mlp_width: 128
+    mlp_depth: 6
+    skips: [ 4 ]
+    multires: 6       # log2 of max freq for positional encoding (3D location)
+    i_embed: 0        # set 0 for default positional encoding, -1 for none
+    kick_in_iter: 150000
+    full_band_iter: 200000
+
+  pose_refinement:
+    name: 'basic'
+    embedding_size: 69
+    total_bones: 24
+
+    mlp_width: 256
+    mlp_depth: 4
+    refine_root: false
+    refine_t: false
+    kick_in_iter: 100000
+
+  normal_renderer:
+    name: 'mesh'
+    soft_mask: true
+    sigma: 0.00001
+
+  shadow_module:
+    name: 'basic'
+    condition_code_size: 162
+    mlp_width: 128
+    mlp_depth: 3
+    skips: [ 4 ]
+    multires: 6       # log2 of max freq for positional encoding (3D location)
+    i_embed: 0        # set 0 for default positional encoding, -1 for none
+
+train:
+  losses:
+    laplacian:
+      coeff_observation: 10.0
+
+    normal:
+      mask_dilate: true
+      kernel_size: 7
+      coeff_mask: 1.0
+      coeff_consist: 0.10
+    
+    color_consist:
+      coeff: 0.050
+
+  lr:
+    appearance: 0.0005
+    canonical_geometry: 0.0005
+    canonical_geometry_xyz: 0.0005
+    non_rigid: 0.0005
+    pose_refinement: 0.00005
+    shadow: 0.0005
+
+  lr_update_exp: true
+  lr_decay_steps: 100000
+
+  log_freq: 10
+  tb_freq: 10000
+  eval_freq: 10000
+  save_freq: 10000
+  total_iters: 300000
+    

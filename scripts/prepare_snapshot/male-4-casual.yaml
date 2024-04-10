@@ -1,0 +1,14 @@
+dataset:
+  snapshot_path: ../../data/snapshot
+  pose_path: ../../data/snapshot/poses
+  subject: 'male-4-casual'
+  sex: 'male'
+
+start_frame: 0
+end_frame: 659
+skip: 6
+split: 'train'
+
+output:
+  dir: ../../data/snapshot
+  name: 'm4c_train'

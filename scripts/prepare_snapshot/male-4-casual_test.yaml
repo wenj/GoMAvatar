@@ -1,0 +1,14 @@
+dataset:
+  snapshot_path: ../../data/snapshot
+  pose_path: ../../data/snapshot/poses
+  subject: 'male-4-casual'
+  sex: 'male'
+
+start_frame: 660
+end_frame: 872
+skip: 6
+split: 'test'
+
+output:
+  dir: ../../data/snapshot
+  name: 'm4c_test'

@@ -1,0 +1,14 @@
+dataset:
+  snapshot_path: ../../data/snapshot
+  pose_path: ../../data/snapshot/poses
+  subject: 'female-4-casual'
+  sex: 'female'
+
+start_frame: 335
+end_frame: 523
+skip: 4
+split: 'test'
+
+output:
+  dir: ../../data/snapshot
+  name: 'f4c_test'

@@ -1,0 +1,14 @@
+dataset:
+  snapshot_path: ../../data/snapshot
+  pose_path: ../../data/snapshot/poses
+  subject: 'male-3-casual'
+  sex: 'male'
+
+start_frame: 0
+end_frame: 455
+skip: 4
+split: 'train'
+
+output:
+  dir: ../../data/snapshot
+  name: 'm3c_train'

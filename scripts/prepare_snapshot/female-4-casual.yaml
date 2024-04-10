@@ -1,0 +1,14 @@
+dataset:
+  snapshot_path: ../../data/snapshot
+  pose_path: ../../data/snapshot/poses
+  subject: 'female-4-casual'
+  sex: 'female'
+
+start_frame: 0
+end_frame: 335
+skip: 4
+split: 'train'
+
+output:
+  dir: ../../data/snapshot
+  name: 'f4c_train'

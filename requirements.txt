@@ -1,0 +1,13 @@
+numpy
+scipy
+opencv-python
+pillow
+termcolor
+pyyaml
+tqdm
+absl-py
+trimesh
+torchmetrics
+seaborn
+tensorboard
+scikit-image==0.18.0

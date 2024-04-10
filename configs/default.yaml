@@ -1,0 +1,131 @@
+exp_name: "default"
+
+bgcolor: [255., 255., 255.]
+random_bgcolor: true
+img_size: [512, 512]
+
+dataset:
+  train:
+    dataset_path: "dataset/zju_mocap/387"
+    batch_size: 1
+    num_workers: 1
+
+    skip: 1
+    maxframes: -1
+    split_for_pose: false # if true, leave 1/5 frames for novel pose evaluation (monohuman's split)
+
+    crop_size: [-1, -1]
+    prefetch: false
+
+  test_view:
+    name: "zju-mocap"
+    dataset_path: "dataset/zju_mocap/387"
+    raw_dataset_path: "dataset/zju_mocap/CoreView_387"
+    batch_size: 1
+    num_workers: 1
+
+    skip: 1
+    maxframes: -1
+
+    exclude_view: 0
+
+  test_pose:
+    dataset_path: "dataset/zju_mocap/387"
+    raw_dataset_path: "dataset/zju_mocap/CoreView_387"
+    batch_size: 1
+    num_workers: 1
+
+  test_pose_mdm:
+    dataset_path: "dataset/zju_mocap/387"
+    pose_path: "data/pose_mdm/row00_col00_smpl_params.npy"
+    batch_size: 1
+    num_workers: 1
+    format: 'mdm'
+
+  test_on_train:
+    batch_size: 1
+    num_workers: 1
+
+  test_freeview:
+    dataset_path: "dataset/zju_mocap/387"
+    batch_size: 1
+    num_workers: 1
+    src_type: 'zju_mocap'
+
+model:
+  # basic info, override all modules
+  img_size: [512, 512]
+  subdivide_iters: []
+  eval_mode: false
+
+  appearance:
+    face_color: true
+    color_init: 0.5
+
+  canonical_geometry:
+    radius_scale: 1.0
+    deform_scale: false
+    deform_so3: false
+
+    sigma: 0.001
+
+  lbs_weights:
+    refine: false
+
+  renderer:
+    name: 'gaussian'
+
+  pose_refinement:
+    name: 'none'
+
+  non_rigid:
+    name: 'none'
+
+  normal_renderer:
+    name: 'none'
+
+  shadow_module:
+    name: 'none'
+
+train:
+  optim: 'adam'
+  lr:
+    lbs_weights: 0.0
+    appearance: 0.005
+    canonical_geometry: 0.005
+    canonical_geometry_xyz: 0.005
+    non_rigid: 0.005
+    pose_refinement: 0.0005
+    shadow: 0.005
+
+  losses:
+    rgb:
+      coeff: 1.0
+
+    mask:
+      coeff: 5.0
+
+    lpips:
+      coeff: 1.0
+
+    laplacian:
+      coeff_canonical: 0.0
+      coeff_observation: 0.0
+
+    normal:
+      coeff_consist: 0.0
+
+      mask_dilate: false
+      coeff_mask: 0.0
+
+    color_consist:
+      coeff: 0.0
+
+  total_iters: 30000
+  lr_update_exp: true
+  lr_decay_steps: 100000
+
+  log_freq: 10
+  tb_freq: 100
+  save_freq: 1000
+  eval_freq: 50000

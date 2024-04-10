@@ -1,0 +1,9 @@
+*.pyc
+__pycache__/
+log
+log/
+data
+data/
+
+submit_sbatch.sh
+sbatch_gpu.sh
