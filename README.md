@@ -2,7 +2,7 @@
 
 CVPR 2024
 
-[Paper]() | [Project Page](https://wenj.github.io/GoMAvatar/)
+[Paper](https://arxiv.org/abs/2404.07991) | [Project Page](https://wenj.github.io/GoMAvatar/)
 
 ```bibtex
 @inproceedings{wen2024gomavatar,
