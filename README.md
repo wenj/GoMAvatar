@@ -38,7 +38,7 @@ pip install git+"https://github.com/graphdeco-inria/diff-gaussian-rasterization"
 
 ## Data preparation
 ### Prerequisites
-Download SMPL v1.0.0 models from [here](https://smpl.is.tue.mpg.de/download.php) and put the `.pkl` files under `utils/smpl/models`.
+Download SMPL v1.0.0's male/female models from [here](https://smpl.is.tue.mpg.de/download.php) and SMPL's neutral model from [here](https://smplify.is.tue.mpg.de/download.php) and put the `.pkl` files under `utils/smpl/models`.
 You may need to remove the Chumpy objects following [here](https://github.com/vchoutas/smplx/tree/main/tools).
 
 ### ZJU-MoCap
